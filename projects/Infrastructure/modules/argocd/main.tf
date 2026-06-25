@@ -29,7 +29,8 @@ resource "helm_release" "argocd" {
   chart      = "argo-cd"
   version    = "6.7.0"
 
-  create_namespace = false
+  create_namespace          = false
+  disable_openapi_validation = true
 
   values = [
     yamlencode({
@@ -55,11 +56,23 @@ resource "helm_release" "monitoring" {
   chart      = "kube-prometheus-stack"
   version    = "56.21.0"
 
-  timeout          = 600
-  create_namespace = false
+  timeout                   = 600
+  create_namespace          = false
+  disable_openapi_validation = true
 
   values = [
     yamlencode({
+      # Admission webhooks spin up pre-install job-patch hooks that download the
+      # cluster OpenAPI schema. On slow connections that times out, so disable them.
+      prometheusOperator = {
+        admissionWebhooks = {
+          enabled = false
+        }
+        tls = {
+          enabled = false
+        }
+      }
+
       grafana = {
         service = {
           type = "ClusterIP"

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/c/Users/abdul/AppData/Roaming/npm/node_modules/@anthropic-ai/claude-code/bin/claude.exe mcp *)",
+      "Bash(/c/Users/abdul/AppData/Roaming/npm/node_modules/@anthropic-ai/claude-code/bin/claude.exe --version)",
+      "Bash(uvx --version)",
+      "Bash(uvx --help)",
+      "Bash(uvx awslabs.core-mcp-server@latest --help)",
+      "Bash(uvx awslabs.terraform-mcp-server@latest --help)",
+      "Bash(uvx awslabs.aws-pricing-mcp-server@latest --help)",
+      "Bash(uvx awslabs.eks-mcp-server@latest --help)",
+      "Bash(docker --version)",
+      "Bash(go version *)",
+      "Bash(where terraform-mcp-server *)",
+      "Bash(docker info *)",
+      "Bash(docker pull *)"
+    ]
+  }
+}
